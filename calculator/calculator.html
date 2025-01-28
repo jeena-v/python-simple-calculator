@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            .calc{
+                width: 385px;
+                height: 465px;
+                border: solid 1px;
+                background:#2b0782;
+                margin-left: 405px;
+                }
+            #screen{
+                width: 80%;
+                height: 50px;
+                margin-left: 37px;
+                margin-top: 8px;
+                pointer-events: none;
+                border-radius: 12px;
+                }
+            .btnc{
+                width: 65%;
+                height: 40px;
+                margin-left: 35px;
+                margin-top: 7px;
+                background: rgb(252, 138, 138);
+                font-size: x-large;
+                border-radius: 12px;
+                }
+            .btn{
+                width: 60px;
+                height: 50px;
+                margin-left: 15px;
+                margin-top: 25px;
+                background: rgb(249, 242, 249);
+                color: rgb(12, 12, 12);
+                border-radius: 12px;
+                }
+        </style>
+        <script>
+            function butnclick(val) {
+                var screen = document.getElementById("screen");
+                // Prevent consecutive operators
+                if (/[\+\-\*\/]$/.test(screen.value) && /[\+\-\*\/]/.test(val)) {
+                    return;
+                    }
+                // Prevent multiple decimals in the same number segment
+                let lastNumberSegment = screen.value.split(/[\+\-\*\/]/).pop();
+                if (val === '.' && lastNumberSegment.includes('.')) {
+                    return;
+                    }
+                screen.value += val;
+                }
+            function clearDisplay(){
+                document.getElementById("screen").value=""
+                }
+            function equalDisplay(){
+                var text=document.getElementById("screen").value
+                var result=eval(text)                  /*eval calculate all maths operation its in built */
+                document.getElementById("screen").value=result
+                }
+        </script>
+    </head>
+    <body>
+        <table class="calc">
+            <tr>
+                <td colspan="4">
+                    <input id="screen" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" class="btn" value="7" onclick="butnclick(7)"> </td>                
+                <td><input type="button" class="btn" value="8" onclick="butnclick(8)"></td>
+                <td><input type="button" class="btn" value="9" onclick="butnclick(9)"></td>
+                <td><input type="button" class="btn" value="/" onclick="butnclick('/')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="btn" value="4" onclick="butnclick(4)"></td>
+                <td><input type="button" class="btn" value="5" onclick="butnclick(5)"></td>
+                <td><input type="button" class="btn" value="6" onclick="butnclick(6)"></td>
+                <td><input type="button" class="btn" value="*" onclick="butnclick('*')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="btn" value="1" onclick="butnclick(1)"></td>
+                <td><input type="button" class="btn" value="2" onclick="butnclick(2)"></td>
+                <td><input type="button" class="btn" value="3" onclick="butnclick(3)"></td>
+                <td><input type="button" class="btn" value="-" onclick="butnclick('-')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="btn" value="." onclick="butnclick('.')"></td>
+                <td><input type="button" class="btn" value="0" onclick="butnclick(0)"></td>
+                <td><input type="button" class="btn" value="00" onclick="butnclick('00')"></td>
+                <td><input type="button" class="btn" value="+" onclick="butnclick('+')"></td>
+                
+            </tr>
+            <tr>
+                <td colspan="2"><input type="button" class="btnc" value="c"  onclick="clearDisplay()"></td> 
+                <td colspan="2"><input type="button" class="btnc" value="=" onclick="equalDisplay()"></td>
+            </tr>
+        </table>
+        <script src="" async defer></script>
+    </body>
+</html>
